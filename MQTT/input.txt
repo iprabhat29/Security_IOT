@@ -1,0 +1,8 @@
+Prabhats-MacBook-Air:AES_RSA iprabhat$ cat input.txt 
+Why don't you use Pandas DataFrame class instead? It has much better coverage of different CSV specs and much better control over the datatypes of individual columns. Check this link. You can read CSV and then write to another CSV with another delimiter very easily.
+
+So right now I have a list of file names. I want to print them without the space after the comma and without quotation marks.
+
+So basically I have a file that has the following output: ['1'. '2', '3']
+
+And I want the output to be 1,2,3

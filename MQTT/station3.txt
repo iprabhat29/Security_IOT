@@ -1,0 +1,8 @@
+I have mainly mentioned mqtt-s
+py since it's multi-platform and 
+easy to use. You can go with any
+ other tool really. And also to
+ my knowledge to run the mosquitto_
+sub and mosquitto_pub you need to 
+have mosquitto-clients installed on your 
+Linux machine running the test (in my case Ubuntu) which can be done easily by

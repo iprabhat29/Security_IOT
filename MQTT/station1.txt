@@ -1,0 +1,24 @@
+# Resistors
+r1= 350
+r2= 450
+r3= 970
+r4= 1000
+r31= 222
+
+# Capacitors
+
+c1= 2
+c2= 5.5
+c3= 3.43
+c4= .5456
+
+# Inductors
+
+x1= 34
+x2= 55
+x4= 12
+
+# Current 
+i11= 2
+i23= 3
+i45= 2.5

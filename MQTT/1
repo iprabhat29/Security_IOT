@@ -1,0 +1,105 @@
+########################################
+#Written By:Prabhat Bhatt
+#Topic:IOT Protocol for TW Project
+########################################
+
+
+
+import paho.mqtt.client as mqtt #import the client1
+import time
+import sys
+import hashlib
+from encryptor import *
+import thread
+
+############Generating KEY for encryption##########
+passkey = "Prabhat"
+key1 = hashlib.sha256(passkey).digest()
+print key1
+
+
+####################################################
+
+#broker_address="192.168.1.184"
+broker_address="iot.eclipse.org"
+
+#########client creation which is substation1#################
+
+print("creating new instance")
+
+client = mqtt.Client("Server") #create new instance
+
+#client.on_message=on_message #attach function to callback
+
+##############################################################
+
+
+###########Connecting client to broker#######################
+
+print("connecting to broker")
+
+client.connect(broker_address) #connect to broker
+
+############################################################
+
+
+print("Publishing Encrypted message to topic","Station1.txt")
+
+#########ENCRYPTION################################
+
+print "Encryption Began\n"
+
+encryptor(key1,"station1.txt",'pubfile_enc')
+#file1hash = hashlib.md5(open(pubfile_enc).read()).hexdigest()
+
+encryptor(key1,"station2.txt",'pubfile_enc2')
+#file2hash = hashlib.md5(open(pubfile_enc2).read()).hexdigest()
+
+encryptor(key1,"station3.txt",'pubfile_enc3')
+#file3hash = hashlib.md5(open(pubfile_enc3).read()).hexdigest()
+
+##################################################
+
+
+
+################Publishing Encrypted file below########
+
+print("Publishing Encrypted message to topic","Station2.txt")
+#########Station1############
+file = open('pubfile_enc',"rb")
+
+for line in file:
+	ret = client.publish("Station1.txt",line)
+file.close()
+
+print("Publishing Encrypted message to topic","Station3.txt")
+
+
+#########Station 2##########
+file2 = open('pubfile_enc2',"rb")
+
+for line2 in file2:
+	ret2 = client.publish("Station2.txt",line2)
+file2.close()
+
+#########Station 3############
+
+file3 = open('pubfile_enc3',"rb")
+
+for line3 in file3:
+	ret3 = client.publish("Station3.txt",line3)
+file3.close()
+
+#####################################################
+
+
+#######################################################
+
+time.sleep(20) # wait
+
+###########Finally Decrypting File to check whether correct file was received########
+
+#decryptor(key1,'pubfile_enc','pubfile_dec')
+
+#####################################################################################
+client.loop_stop() #stop the loop
